@@ -25,8 +25,8 @@ classifiers = [
 ]
 
 dependencies = [
-    "gemmi>=0.5.6,<=0.6.7",
-    "reciprocalspaceship>=1.0.7",
+    "gemmi>=0.5.6,<=0.7.3",
+    "reciprocalspaceship<=1.0.7",
     "numpy",
     "tqdm",
     "loguru",

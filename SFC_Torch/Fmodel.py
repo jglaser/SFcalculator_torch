@@ -95,7 +95,7 @@ class SFcalculator(object):
         self.wavelength = wavelength
         self.anomalous = anomalous
         self.device = device
-        assert mode in ["xray", "cryoem"], ValueError(
+        assert mode in ["xray", "cryoem", "neutron"], ValueError(
                 "mode has to be xray or cryoem!"
             )
         self.mode = mode
@@ -539,6 +539,10 @@ class SFcalculator(object):
                 f0 = np.array(
                     [element.c4322.calculate_sf(dr2 / 4.0) for dr2 in self.dr2asu_array]
                 )
+                self.full_atomic_sf_asu[atom_type] = f0
+            elif self.mode == "neutron":
+                # Neutron scattering (Fermi length) is a constant scalar independent of resolution
+                f0 = np.full_like(self.dr2asu_array, element.neutron_b_c)
                 self.full_atomic_sf_asu[atom_type] = f0
 
         if self.anomalous:

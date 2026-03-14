@@ -185,10 +185,10 @@ class SFcalculator(object):
     def _init_cell(self):
         # Set up unit cell related property
         self.orth2frac_tensor = torch.tensor(
-            self.unit_cell.fractionalization_matrix.tolist(), device=self.device
+            self.unit_cell.frac.mat.tolist(), device=self.device
         ).type(torch.float32)
         self.frac2orth_tensor = torch.tensor(
-            self.unit_cell.orthogonalization_matrix.tolist(), device=self.device
+            self.unit_cell.orth.mat.tolist(), device=self.device
         ).type(torch.float32)
         self.reciprocal_cell = self.unit_cell.reciprocal()  # gemmi.UnitCell object
         # [ar, br, cr, cos(alpha_r), cos(beta_r), cos(gamma_r)]

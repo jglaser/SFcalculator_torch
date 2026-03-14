@@ -345,7 +345,7 @@ class PDBParser(object):
         """
         move the current model into the cell by shifting
         """
-        frac_mat = np.array(self.cell.fractionalization_matrix.tolist())
+        frac_mat = np.array(self.cell.frac.mat.tolist())
         mean_positions_frac = np.dot(frac_mat, np.mean(assert_numpy(self.atom_pos), axis=0))
         shift_vec = np.dot(np.linalg.inv(frac_mat), mean_positions_frac % 1.0 - mean_positions_frac)
         self.set_positions(assert_numpy(self.atom_pos) + shift_vec)
@@ -360,7 +360,7 @@ class PDBParser(object):
         Returns:
             frational coordinates, np.ndarray, [n_points, ..., 3]
         """
-        orth2frac_mat = np.array(self.cell.fractionalization_matrix.tolist())
+        orth2frac_mat = np.array(self.cell.frac.mat.tolist())
         frac_pos = np.einsum("n...x,yx->n...y", orth_pos, orth2frac_mat)
         return frac_pos
     
@@ -374,7 +374,7 @@ class PDBParser(object):
         Returns:
             orthogonal coordinates, np.ndarray, [n_points, ..., 3]
         """
-        frac2orth_mat = np.array(self.cell.orthogonalization_matrix.tolist())
+        frac2orth_mat = np.array(self.cell.orth.mat.tolist())
         orth_pos = np.einsum("n...x,yx->n...y", frac_pos, frac2orth_mat)
         return orth_pos
     

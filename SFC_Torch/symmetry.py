@@ -257,8 +257,8 @@ def asu2p1_torch(atom_pos_orth, unitcell, spacegroup,
     ------
     atom_pos_sym_oped, [N_atoms, N_ops, 3] tensor in either fractional or orthogonal coordinates
     '''
-    orth2frac_tensor = torch.tensor(unitcell.fractionalization_matrix.tolist(), device=atom_pos_orth.device, dtype=torch.float32)
-    frac2orth_tensor = torch.tensor(unitcell.orthogonalization_matrix.tolist(), device=atom_pos_orth.device, dtype=torch.float32)
+    orth2frac_tensor = torch.tensor(unitcell.frac.mat.tolist(), device=atom_pos_orth.device, dtype=torch.float32)
+    frac2orth_tensor = torch.tensor(unitcell.orth.mat.tolist(), device=atom_pos_orth.device, dtype=torch.float32)
     operations = spacegroup.operations()  # gemmi.GroupOps object
     R_G_tensor_stack = torch.tensor(np.array([
             np.array(sym_op.rot)/sym_op.DEN for sym_op in operations]), device=atom_pos_orth.device).type(torch.float32)

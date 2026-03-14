@@ -27,7 +27,7 @@ def uvw_array_frac(unitcell, dmin, dmax, step=0.3):
     unitcell: Gemmi.UnitCell instance
     """
     uvw_arr_orth = uvw_array_orth(dmin, dmax, step=step)
-    o2f_matrix = np.array(unitcell.fractionalization_matrix.tolist())
+    o2f_matrix = np.array(unitcell.frac.mat.tolist())
     return np.dot(uvw_arr_orth, o2f_matrix.T)
 
 

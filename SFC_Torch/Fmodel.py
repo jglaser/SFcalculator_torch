@@ -542,7 +542,7 @@ class SFcalculator(object):
                 self.full_atomic_sf_asu[atom_type] = f0
             elif self.mode == "neutron":
                 # Neutron scattering (Fermi length) is a constant scalar independent of resolution
-                f0 = np.full_like(self.dr2asu_array, element.neutron_b_c)
+                f0 = np.full_like(self.dr2asu_array, element.neutron92.get_coefs()[0])
                 self.full_atomic_sf_asu[atom_type] = f0
 
         if self.anomalous:

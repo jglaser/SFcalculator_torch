@@ -66,7 +66,7 @@ def hier2array(structure):
 def array2hier(
     atom_pos, atom_b_aniso, atom_b_iso, atom_occ, atom_name, cra_name, atom_altloc, res_id
 ):
-    new_model = gemmi.Model("SFC")
+    new_model = gemmi.Model(1)
     for i in range(len(cra_name)):
         Chain_i, resnum_i, resname_i, atomname_i = cra_name[i].split("-")
         if i == 0:

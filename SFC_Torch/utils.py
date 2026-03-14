@@ -294,7 +294,7 @@ def unitcell_grid_center(unitcell, spacing=4.5, frac=False, return_tensor=True, 
         result = unitcell_grid_center_frac
     else:
         result = np.dot(
-            unitcell_grid_center_frac, np.array(unitcell.orthogonalization_matrix).T
+            unitcell_grid_center_frac, np.array(unitcell.orth.mat).T
         )
 
     if return_tensor:
